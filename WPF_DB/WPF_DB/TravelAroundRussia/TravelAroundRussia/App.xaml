@@ -1,0 +1,16 @@
+﻿<Application x:Class="TravelAroundRussia.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cvrt="clr-namespace:TravelAroundRussia.Converters"
+             StartupUri="Views/MainWindow.xaml">
+    
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Brushes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <cvrt:BoolToTourIsActualConverter x:Key="BoolToTourIsActualConverter" />
+            <cvrt:BoolToTourIsActualColorConverter x:Key="BoolToTourIsActualColorConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

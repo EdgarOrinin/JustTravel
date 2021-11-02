@@ -1,0 +1,68 @@
+﻿<Window x:Class="TravelAroundRussia.Views.HotelListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Список Отелей"
+        Width="1080"
+        MinWidth="1080"
+        Height="640"
+        MinHeight="640">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid Background="{DynamicResource PurpleBrush}"
+              Grid.Row="0"
+              Height="40">
+            <Button Content="Добавить"
+                    Click="AddHotel_Click"
+                    Width="100"
+                    Margin="0,0,240,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" />
+            <Button Content="Удалить"
+                    Width="100"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" />
+            <Button Content="Редактировать"
+                    Click="EditHotel_Click"
+                    Width="100"
+                    Margin="240,0,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" />
+        </Grid>
+        <DataGrid Grid.Row="1"
+                  x:Name="Date">
+        </DataGrid>
+        <Grid Grid.Row="2"
+              Background="{DynamicResource PurpleBrush}"
+              Height="30">
+            <TextBlock Text="Кол-во записей Для Вывода :"
+                       Foreground="White"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="10" />
+            <TextBox HorizontalAlignment="Left"
+                     Text="10"
+                     VerticalAlignment="Center"
+                     Width="30"
+                     Margin="180,0,0,0" />
+            <Button Content="К Первой"
+                    Width="100"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0,0,120,0" />
+            <Button Content="К Последней"
+                    Width="100"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="120,0,0,0" />
+            <TextBlock Text="Кол-во Записей : 4"
+                       Margin="10"
+                       Foreground="White"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center" />
+        </Grid>
+    </Grid>
+</Window>

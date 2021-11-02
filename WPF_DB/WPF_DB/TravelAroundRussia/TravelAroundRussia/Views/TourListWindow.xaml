@@ -1,0 +1,117 @@
+﻿<Window x:Class="TravelAroundRussia.Views.TourListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cvrt="clr-namespace:TravelAroundRussia.Converters"
+        Background="White"
+        Title="Список Туров"
+        Width="1080"
+        MinWidth="1080"
+        Height="640"
+        MinHeight="640">
+    <Grid Margin="0,0,0,0"
+          Background="{DynamicResource PurpleBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Введите текст для поиска:"
+                       Foreground="White"
+                       Margin="0,0,8,0" />
+            <TextBox Width="160"
+                     x:Name="Search"
+                     Height="22"
+                     TextChanged="Searching" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    Margin="0,8">
+            <TextBlock Text="Введите тип:"
+                       Foreground="White"
+                       Margin="0,0,8,0" />
+            <ComboBox x:Name="TourTypes"
+                      SelectionChanged="Filtering"
+                      Width="160">
+                <ComboBoxItem Content="Международный туризм" />
+                <ComboBoxItem Content="Лечебно-оздоровительные туры" />
+                <ComboBoxItem Content="Пляжные туры" />
+                <ComboBoxItem Content="Экскурсионные туры" />
+                <ComboBoxItem Content="Обслуживание корпоративных клиентов по заказу" />
+                <ComboBoxItem Content="Культурно-исторические туры" />
+                <ComboBoxItem Content="Специализированные детские туры" />
+                <ComboBoxItem Content="Внутренний туризм Горнолыжные курорты" />
+            </ComboBox>
+
+        </StackPanel>
+        <CheckBox Content="только актуальные туры"
+                  Foreground="White"
+                  IsChecked="{x:Null}"
+                  x:Name="IsActual"
+                  Grid.Row="2"
+                  HorizontalAlignment="Center" />
+        <ItemsControl x:Name="Tours"
+                      ItemsSource="{Binding TourList}"
+                      Grid.Row="3"
+                      Margin="0,8,0,0"
+                      Background="WhiteSmoke">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel IsItemsHost="True"
+                               Background="WhiteSmoke"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="{DynamicResource SilverBrush}"
+                            BorderThickness="1"
+                            Margin="6">
+                        <Grid Background="White"
+                              Grid.Row="3"
+                              Width="240"
+                              Height="230">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Name}"
+                                       HorizontalAlignment="Center"
+                                       FontSize="16"
+                                       Grid.Row="0"
+                                       Margin="0,4" />
+                            <Image Source="{Binding ImagePreview}"
+                                   Grid.Row="1"
+                                   Margin="4"
+                                   Height="140"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+                            <TextBlock Grid.Row="2"
+                                       FontSize="18"
+                                       HorizontalAlignment="Center">
+                                <Run Text="{Binding Price}" />
+                                <Run Text="РУБ" />
+                            </TextBlock>
+                            <TextBlock Text="{Binding Path=IsActual, Converter={StaticResource BoolToTourIsActualConverter}}"
+                                       Foreground="{Binding Path=IsActual, Converter={StaticResource BoolToTourIsActualColorConverter}}"
+                                       Grid.Row="3"
+                                       Margin="4" />
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Margin="4"
+                                        Grid.Row="3">
+                                <TextBlock Text="Билет:"
+                                           Margin="0,0,4,0" />
+                                <TextBlock Text="{Binding TicketCount}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Window>
